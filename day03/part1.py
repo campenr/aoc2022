@@ -2,12 +2,11 @@ from __future__ import annotations
 
 import argparse
 import os.path
+from string import ascii_letters
 
 import pytest
 
 import support
-
-from string import ascii_letters
 
 INPUT_TXT = os.path.join(os.path.dirname(__file__), 'input.txt')
 

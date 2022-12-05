@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import argparse
 import os.path
-from string import ascii_letters
 
 import pytest
 
@@ -14,28 +13,33 @@ INPUT_TXT = os.path.join(os.path.dirname(__file__), 'input.txt')
 def compute(s: str) -> int:
     result = 0
     lines = s.splitlines()
-    group = []
     for line in lines:
-        group.append(line)
-        if len(group) == 3:
-            accum = set(group[0]).intersection(set(group[1]))
-            accum = accum.intersection(set(group[2]))
-            assert len(accum) == 1
-            result += ascii_letters.index(list(accum)[0]) + 1
-            # reset for next group
-            group = []
+        first, second = line.split(',')
+
+        first = first.split('-')
+        first = set(range(int(first[0]), int(first[1]) + 1))
+
+        second = second.split('-')
+        second = set(range(int(second[0]), int(second[1]) + 1))
+
+        intersect = first.intersection(second)
+        contains = len(intersect)
+
+        if contains:
+            result += 1
+
     return result
 
 
 INPUT_S = '''\
-vJrwpWtwJgWrhcsFMMfFFhFp
-jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
-PmmdzqPrVvPwwTWBwg
-wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn
-ttgJtRGJQctTZtZT
-CrZsJsPPZsGzwwsLwLmpwMDw
+2-4,6-8
+2-3,4-5
+5-7,7-9
+2-8,3-7
+6-6,4-6
+2-6,4-8
 '''
-EXPECTED = 70
+EXPECTED = 4
 
 
 @pytest.mark.parametrize(
