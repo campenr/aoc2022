@@ -20,7 +20,8 @@ def parse_move(value):
         case 'B':
             return PAPER
         case 'C':
-           return SCISSORS
+            return SCISSORS
+
 
 def parse_result(result):
     match result:
@@ -29,7 +30,8 @@ def parse_result(result):
         case 'Y':
             return DRAW
         case 'Z':
-           return WIN
+            return WIN
+
 
 def compute_play(them, result):
     # this is effectively the same logic as the module approach. A cirlce of results with 3 wrapping around to 1. I just can't get the module logic to work. :shrug:
@@ -37,14 +39,16 @@ def compute_play(them, result):
         us = them
     if result == LOSS:
         us = them - 1
-        if us < 1: us = 3
+        if us < 1:
+            us = 3
     if result == WIN:
         us = them + 1
-        if us > 3: us = 1
+        if us > 3:
+            us = 1
     return us
 
-def compute(s: str) -> int:
 
+def compute(s: str) -> int:
     """
     I know there's a fancier solution using modulo, or I could just map the inputs for a match to
     the score for that match, but my brain isn't working right and can't get either to work, so here

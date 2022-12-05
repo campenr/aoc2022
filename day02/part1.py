@@ -23,7 +23,7 @@ def parse_move(value):
         case 'B' | 'Y':
             return PAPER
         case 'C' | 'Z':
-           return SCISSORS
+            return SCISSORS
 
 
 def compute_match(*them_and_us):
@@ -36,7 +36,6 @@ def compute_match(*them_and_us):
 
 
 def compute(s: str) -> int:
-
     """
     I know there's a fancier solution using modulo, or I could just map the inputs for a match to
     the score for that match, but my brain isn't working right and can't get either to work, so here
@@ -48,7 +47,7 @@ def compute(s: str) -> int:
 
     lines = s.splitlines()
     for line in lines:
-        them, us = [parse_move(move) for move in line.split()]
+        them, us = (parse_move(move) for move in line.split())
         result = compute_match(them, us)
         total += result
         total += us
