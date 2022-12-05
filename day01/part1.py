@@ -15,7 +15,6 @@ def compute(s: str) -> int:
     for n in numbers:
         pass
 
-
     max_index = 0
     max_value = 0
     current_index = 0
@@ -28,7 +27,7 @@ def compute(s: str) -> int:
             if current_value > max_value:
                 max_value = current_value
                 max_index = current_index
-            
+
             # incremement our elf and rest count
             current_index += 1
             current_value = 0
