@@ -22,10 +22,7 @@ def compute(s: str) -> int:
         second = second.split('-')
         second = set(range(int(second[0]), int(second[1]) + 1))
 
-        intersect = first.intersection(second)
-        contains = len(intersect)
-
-        if contains:
+        if first & second:
             result += 1
 
     return result

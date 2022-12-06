@@ -23,7 +23,9 @@ def compute(s: str) -> int:
         second = set(range(int(second[0]), int(second[1]) + 1))
 
         intersect = first.intersection(second)
-        fully_contains = len(intersect) == len(first) or len(intersect) == len(second)
+        fully_contains = len(intersect) == len(
+            first,
+        ) or len(intersect) == len(second)
 
         if fully_contains:
             result += 1
